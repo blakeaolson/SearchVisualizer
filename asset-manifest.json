@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/SearchVisualizer/static/css/main.c78fff2b.css",
+    "main.js": "/SearchVisualizer/static/js/main.0c18c957.js",
+    "index.html": "/SearchVisualizer/index.html",
+    "main.c78fff2b.css.map": "/SearchVisualizer/static/css/main.c78fff2b.css.map",
+    "main.0c18c957.js.map": "/SearchVisualizer/static/js/main.0c18c957.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c78fff2b.css",
+    "static/js/main.0c18c957.js"
+  ]
+}
