@@ -1,0 +1,113 @@
+.tutorial {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background-color: #191920;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-style: solid;
+  border-width: 1px;
+  border-color: white;
+}
+.header {
+  font-weight: 500;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.text {
+  font-weight: 300;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+.img {
+  width: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.tutPrevButton {
+  position: fixed;
+  top: 88%;
+  left: 62%;
+
+  padding: 0.35em 1.2em;
+  border: 0.1em solid #ffffff;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: #ffffff;
+  text-align: center;
+  transition: all 0.2s;
+  background-color: transparent;
+  width: 65px;
+}
+.tutPrevButton:hover {
+  color: #000000;
+  background-color: #ffffff;
+}
+.tutNextButton {
+  position: fixed;
+  left: 90%;
+  transform: translateX(-80%);
+  top: 88%;
+
+  padding: 0.35em 1.2em;
+  border: 0.1em solid #ffffff;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: #ffffff;
+  text-align: center;
+  transition: all 0.2s;
+  background-color: transparent;
+  width: 65px;
+}
+.tutNextButton:hover {
+  color: #000000;
+  background-color: #ffffff;
+}
+.counter {
+  position: fixed;
+  color: white;
+  font-weight: 100;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 3%;
+}
+.exitButton {
+  position: fixed;
+  top: 88%;
+  left: 12%;
+
+  padding: 0.35em 1.2em;
+  border: 0.1em solid #ffffff;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: #ffffff;
+  text-align: center;
+  transition: all 0.2s;
+  background-color: transparent;
+  width: 85px;
+}
+.exitButton:hover {
+  color: #000000;
+  background-color: #ffffff;
+}

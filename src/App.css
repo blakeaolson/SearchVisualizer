@@ -1,38 +1,83 @@
-.App {
-  text-align: center;
+:root {
+  --td-background-color: #6495ed;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background-color: #191920;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.barChart {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: baseline;
+  padding-top: 50px;
+}
+.bar {
+  display: inline-block;
+  height: 100px;
+  width: 4px;
+  margin: 1px;
+  background-color: white;
+}
+.bar:hover {
+  background-color: var(--td-background-color) !important;
 }
 
-.App-link {
-  color: #61dafb;
+.reset--button {
+  padding: 0.35em 1.2em;
+  border: 0 solid #ffffff;
+  margin: 10px;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  color: #ffffff;
+  text-align: center;
+  transition: all 0.2s;
+  background-color: transparent;
+  padding: 30px;
+}
+.reset--button:hover {
+  color: #a8a8c2;
+}
+.bottom {
+  display: grid;
+  align-items: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.buttons {
+  grid-column-start: 1;
+  grid-row-start: 1;
+  justify-self: center;
+}
+.sort--button {
+  padding: 0.35em 1.2em;
+  border: 0 solid #ffffff;
+  margin: 10px;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  color: #ffffff;
+  text-align: center;
+  transition: all 0.2s;
+  background-color: transparent;
+  padding: 30px;
+}
+.sort--button:hover {
+  color: #a8a8c2;
+}
+.AutoSort {
+  grid-column-start: 1;
+  grid-row-start: 1;
+  justify-self: left;
+
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+}
+.ToggleLabel {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  color: #ffffff;
 }

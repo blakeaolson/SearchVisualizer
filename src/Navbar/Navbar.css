@@ -1,0 +1,38 @@
+:root {
+  --navbutton-background-color: #666666;
+  --navbutton-hovor-color: #666666;
+}
+.title {
+  color: white;
+  padding-right: 50px;
+  padding-left: 20px;
+  margin-top: auto;
+  margin-bottom: auto;
+  font-family: Roboto, sans-serif;
+  font-weight: 500;
+}
+.navbar {
+  height: 50px;
+  display: flex;
+  padding: 10px;
+  box-shadow: 0px 2.9826px 7.4564px #111116;
+}
+
+.button {
+  display: inline-block;
+  padding: 0.35em 1.2em;
+  border: 0 solid #ffffff;
+  margin: 10px;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  color: var(--navbutton-background-color);
+  text-align: center;
+  transition: all 0.2s;
+  background-color: transparent;
+}
+.button:hover {
+  color: var(--navbutton-hovor-color);
+}
