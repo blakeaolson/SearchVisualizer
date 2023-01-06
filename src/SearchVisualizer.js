@@ -4,6 +4,8 @@ import Navbar from "./Navbar/Navbar";
 import ToggleSwitch from "./ToggleSwitch/ToggleSwitch";
 import BubbleSort from "./SearchAlgos/BubbleSort";
 import Tutorial from "./Tutorial";
+import mergeSortHelper from "./SortAlgos/MergeSort";
+import quickSortHelper from "./SortAlgos/QuickSort";
 
 export default class SearchVisualizer extends React.Component {
   constructor(props) {
@@ -20,6 +22,10 @@ export default class SearchVisualizer extends React.Component {
 
   componentDidMount() {
     this.createGraph();
+  }
+
+  sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
   createGraph() {
@@ -103,33 +109,62 @@ export default class SearchVisualizer extends React.Component {
       activatedKey: [saveKey],
     });
   }
+  async animate(array, animations){
+    // Applying animations
+    for (let i = 0; i < animations.length; ++i){
+      array[animations[i][0]] = animations[i][1];
+      this.setState({heightValues : array});
+      await this.sleep(0.01);
+    } 
+  }
+  quickSortClicked(){
+    // Checking if already sorted 
+    let sorted = this.state.isSorted;
+    if (sorted){return;}
+    this.setState({isSorted: true});
 
-  async sort() {
-    // Delay function
-    function sleep(ms) {
-      return new Promise((resolve) => setTimeout(resolve, ms));
-    }
+    // Defining heightValues and making deep copy 
+    let heightVals = this.state.heightValues;
+    let newHeightVals = [...heightVals];
+
+    // Filling queue of animations through mergesort 
+    let animations = quickSortHelper(heightVals);
+
+    // Applying animations with delay
+    this.animate(newHeightVals, animations);
+  }
+  
+  mergeSortClicked(){
+    // Checking if already sorted 
+    let sorted = this.state.isSorted;
+    if (sorted){return;}
+    this.setState({isSorted: true});
+
+    // Defining heightValues and making deep copy 
+    let heightVals = this.state.heightValues;
+    let newHeightVals = [...heightVals];
+
+    // Filling queue of animations through mergesort 
+    let animations = mergeSortHelper(heightVals);
+
+    // Applying animations
+    this.animate(newHeightVals, animations);
+  }
+
+  async bubblesort() {
     const heightVals = this.state.heightValues;
-    var sorted = false;
-
-    // Sorting algorithm
-    while (!sorted) {
-      var checkSorted = false;
-      for (let i = 0; i < heightVals.length; i++) {
-        if (i !== heightVals.length - 1) {
-          if (heightVals[i + 1] < heightVals[i]) {
-            let temp = heightVals[i + 1];
-            heightVals[i + 1] = heightVals[i];
-            heightVals[i] = temp;
-            checkSorted = true;
-            this.setState({ heightValues: heightVals });
-          }
+    // Bubble sort algorithm
+    const n = heightVals.length;
+    for(let i = 0; i < n; ++i) {
+      for (let j = 0; j < n; j++) {
+        if (j !== n - 1 && heightVals[j + 1] < heightVals[j]) {
+          let temp = heightVals[j + 1];
+          heightVals[j + 1] = heightVals[j];
+          heightVals[j] = temp;
         }
       }
-      await sleep(7);
-      if (checkSorted === false) {
-        sorted = true;
-      }
+      this.setState({heightValues : heightVals});
+      await this.sleep(7);
     }
     // Setting the value of isSorted to true
     this.setState({ isSorted: true });
@@ -174,8 +209,14 @@ export default class SearchVisualizer extends React.Component {
             <button className="reset--button" onClick={() => this.resetGraph()}>
               Reset
             </button>
-            <button className="sort--button" onClick={() => this.sort()}>
+            <button className="sort--button" onClick={() => this.bubblesort()}>
               Bubble Sort
+            </button>
+            <button className="sort--button" onClick={() => this.mergeSortClicked()}>
+                Merge Sort
+            </button>
+            <button className="sort--button" onClick={() => this.quickSortClicked()}>
+                Quick Sort
             </button>
           </div>
         </div>

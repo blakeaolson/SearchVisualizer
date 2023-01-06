@@ -1,5 +1,10 @@
 import React from "react";
 import "./Tutorial.css";
+import bars from "./Images/bars.png";
+import selectedbar from "./Images/selectedbar.png";
+import linearSearch from "./Images/linearSearch.png";
+import sorted from "./Images/sorted.png";
+
 export default function Tutorial() {
   var [count, updateCount] = React.useState(0);
   const tutorialInfo = {
@@ -18,11 +23,11 @@ export default function Tutorial() {
       "Resetting and more",
     ],
     images: [
-      "bars.png",
-      "selectedbar.png",
-      "sorted.png",
-      "linearSearch.png",
-      "bars.png",
+      bars,
+      selectedbar,
+      sorted,
+      linearSearch,
+      bars,
     ],
   };
   function exit() {

@@ -10,11 +10,8 @@ export default function BinarySearch(heightValues, keyValue) {
   ) {
     // Finding a value by splitting the array in half
     let searchKey;
-    if ((high + low) / 2 !== low + 0.5) {
-      searchKey = Math.ceil((high + low) / 2);
-    } else {
-      searchKey = low;
-    }
+    searchKey = Math.floor(low + (high - low) / 2);
+
     let element = document.getElementById(searchKey);
     element.style.backgroundColor = "#D22B2B";
     element.style.setProperty("--td-background-color", "#D22B2B");
@@ -25,12 +22,12 @@ export default function BinarySearch(heightValues, keyValue) {
       return true;
     } else if (searchKey > keyValue) {
       await sleep(100);
-      return BinarySearchAlgo(heightValues, keyValue, low, searchKey);
+      return BinarySearchAlgo(heightValues, keyValue, low, searchKey - 1);
     } else if (searchKey < keyValue) {
       await sleep(100);
-      return BinarySearchAlgo(heightValues, keyValue, searchKey, high);
+      return BinarySearchAlgo(heightValues, keyValue, searchKey + 1, high);
     }
-    return false;
+    return low === keyValue ? true : false;
   }
   return BinarySearchAlgo(heightValues, keyValue);
 }

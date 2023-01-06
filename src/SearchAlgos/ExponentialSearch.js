@@ -31,7 +31,7 @@ async function BinarySearch(
 }
 // Exponential Search
 export default async function ExponentialSearch(heightValues, keyValue) {
-  if (keyValue == 0) {
+  if (keyValue === 0) {
     return true;
   }
   var i = 1;

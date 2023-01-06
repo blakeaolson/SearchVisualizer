@@ -12,7 +12,7 @@ function Navbar(props) {
   function resetColor() {
     for (let i = 0; i < props.heightValues.length; i++) {
       let element = document.getElementById(i);
-      if (i != props.keyValue) {
+      if (i !== props.keyValue) {
         element.style.backgroundColor = "white";
         element.style.setProperty("--td-background-color", "#6495ed");
       } else {
