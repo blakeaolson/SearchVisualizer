@@ -11,9 +11,9 @@ export default function Tutorial() {
     h3Text: [
       "This tutorial will show you how to use the different algorithms that this website features",
       "To start, click on any data bar and it will light up blue",
-      "Most algorithms require the data to be sorted. Click Bubble Sort to sort the data or toggle AutoSort.",
+      "Most algorithms require the data to be sorted. Click any sorting algorithm to sort the data or toggle AutoSort.",
       "Click one of the search algorithms at the top to visualize it!",
-      "Click a new bar or reset the graph to try other algorithms",
+      "Click a new bar or reset the array to try other algorithms",
     ],
     h1Text: [
       "Welcome to Search Algorithm Visualizer!",
