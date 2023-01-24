@@ -2,7 +2,7 @@ import "./App.css";
 import React from "react";
 import Navbar from "./Navbar/Navbar";
 import ToggleSwitch from "./ToggleSwitch/ToggleSwitch";
-import BubbleSort from "./SearchAlgos/BubbleSort";
+import BubbleSort from "./SortAlgos/BubbleSort";
 import Tutorial from "./Tutorial";
 import mergeSortHelper from "./SortAlgos/MergeSort";
 import quickSortHelper from "./SortAlgos/QuickSort";
@@ -31,28 +31,24 @@ export default class SearchVisualizer extends React.Component {
   createGraph() {
     const autoSort = this.state.autoSort;
 
-    // Creating new height values
     let heightValues = [];
     while (heightValues.length < 197) {
-      heightValues.push(Math.floor(Math.random() * 500) + 10);
+      heightValues.push(Math.floor(Math.random() * 500) + 10); // Intialize 200 heightvals from range 10 to 500
     }
 
-    // Changing the color of the buttons to grey
-    let elements = document.getElementsByClassName("button");
+    let navbuttons = document.getElementsByClassName("button");
     for (let i = 0; i < 6; i++) {
-      elements[i].style.setProperty("--navbutton-background-color", "#666666");
-      elements[i].style.setProperty("--navbutton-hovor-color", "#666666");
+      navbuttons[i].style.setProperty("--navbutton-background-color", "#666666"); // set to grey
+      navbuttons[i].style.setProperty("--navbutton-hovor-color", "#666666"); // set hover to grey
     }
-    // Updating graph depending on autoSort
+
     if (autoSort) {
-      // if sorted
-      heightValues = BubbleSort(heightValues);
+      heightValues = BubbleSort(heightValues); // BubbleSort external function does not animate
       this.setState({ isSorted: true });
     } else {
-      // if not sorted
       this.setState({ isSorted: false });
     }
-    // Updating the state of the height of the bars and setting activation to false
+
     this.setState({
       heightValues: heightValues,
       barActivated: false,
@@ -61,7 +57,6 @@ export default class SearchVisualizer extends React.Component {
   }
 
   resetGraph() {
-    // Creates the graph and its default values
     this.createGraph();
     const heightValues = this.state.heightValues;
 
@@ -74,23 +69,24 @@ export default class SearchVisualizer extends React.Component {
   }
 
   barClicked(key) {
-    const saveKey = key;
     const barActivated = this.state.barActivated;
     const isSorted = this.state.isSorted;
     const heightValues = this.state.heightValues;
+    const prevKey = this.state.activatedKey;
+    
     if (barActivated) {
-      // Resetting the activated bar to its original color
+      // Resetting color of graph
       for (let i = 0; i < heightValues.length; i++) {
         var elem = document.getElementsByClassName("bar")[i];
         elem.style.backgroundColor = "white";
         elem.style.setProperty("--td-background-color", "#6495ed");
       }
     }
-    // Activate the selected Bar
-    let barElement = document.getElementById(key);
-    barElement.style.backgroundColor = "#0096FF";
 
-    // If its sorted change the color of the buttons to display activation
+    let activatedBar = document.getElementById(key);
+    activatedBar.style.backgroundColor = "#0096FF";
+
+    // Changing color to show activation
     let bElem = document.getElementsByClassName("button");
     if (isSorted) {
       for (let i = 0; i < 6; i++) {
@@ -99,61 +95,55 @@ export default class SearchVisualizer extends React.Component {
       }
     }
 
-    // Update linear regardless due to its non reliance on a sorted input
+    // Update linear search button due to its non reliance on a sorted input
     bElem[0].style.setProperty("--navbutton-background-color", "#ffffff");
     bElem[0].style.setProperty("--navbutton-hovor-color", "#a8a8c2");
 
-    // Set the state of barActivated
     this.setState({
       barActivated: true,
-      activatedKey: [saveKey],
+      activatedKey: [key],
     });
   }
+
   async animate(array, animations){
-    // Applying animations
     for (let i = 0; i < animations.length; ++i){
       array[animations[i][0]] = animations[i][1];
       this.setState({heightValues : array});
-      await this.sleep(0.01);
+      await this.sleep(1);
     } 
   }
+
   quickSortClicked(){
-    // Checking if already sorted 
     let sorted = this.state.isSorted;
     if (sorted){return;}
-    this.setState({isSorted: true});
-
-    // Defining heightValues and making deep copy 
+    
+    // Must make a deep copy to pass to animate function 
     let heightVals = this.state.heightValues;
     let newHeightVals = [...heightVals];
 
-    // Filling queue of animations through mergesort 
     let animations = quickSortHelper(heightVals);
-
-    // Applying animations with delay
     this.animate(newHeightVals, animations);
+
+    this.setState({isSorted: true});
   }
   
   mergeSortClicked(){
-    // Checking if already sorted 
     let sorted = this.state.isSorted;
     if (sorted){return;}
-    this.setState({isSorted: true});
 
-    // Defining heightValues and making deep copy 
+    // Must make a deep copy to pass to animate function 
     let heightVals = this.state.heightValues;
     let newHeightVals = [...heightVals];
 
-    // Filling queue of animations through mergesort 
     let animations = mergeSortHelper(heightVals);
-
-    // Applying animations
     this.animate(newHeightVals, animations);
+
+    this.setState({isSorted: true});
   }
 
   async bubblesort() {
     const heightVals = this.state.heightValues;
-    // Bubble sort algorithm
+
     const n = heightVals.length;
     for(let i = 0; i < n; ++i) {
       for (let j = 0; j < n; j++) {
@@ -164,9 +154,9 @@ export default class SearchVisualizer extends React.Component {
         }
       }
       this.setState({heightValues : heightVals});
-      await this.sleep(7);
+      await this.sleep(10); // Bubble sort is so slow that it must be animated in only the outer loop
     }
-    // Setting the value of isSorted to true
+    
     this.setState({ isSorted: true });
   }
 
