@@ -146,11 +146,11 @@ export default class SearchVisualizer extends React.Component {
 
     const n = heightVals.length;
     for(let i = 0; i < n; ++i) {
-      for (let j = 0; j < i; j++) {
-        if (heightVals[i] < heightVals[j]) {
-          let temp = heightVals[j];
-          heightVals[j] = heightVals[i];
-          heightVals[i] = temp;
+      for (let j = 1; j < n - i; j++) {
+        if (heightVals[j] < heightVals[j - 1]) {
+          let temp = heightVals[j - 1];
+          heightVals[j - 1] = heightVals[j];
+          heightVals[j] = temp;
         }
       }
       this.setState({heightValues : heightVals});
