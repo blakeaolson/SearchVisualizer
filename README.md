@@ -17,6 +17,6 @@ To use the Search Algorithm Visualizer, you must first sort the data. Most searc
 - Javascript
 - CSS
 
-## How to access
+## Deployment
 https://blakeaolson.github.io/SearchVisualizer/
 
